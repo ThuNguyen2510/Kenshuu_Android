@@ -30,23 +30,45 @@ class LoginActivity  : BaseActivity<ActLoginBinding>() {
         setupListener()
     }
     fun setViews(){
-    // ユーザIDとパスワードが必須項目
-        binding?.edituserId!!
-        binding?.editpassword!!
+        if(pref.getUserName()!=null){//ログインしている場合、一覧画面に自動的に遷移する
+            binding?.edituserId?.setText(pref.getUserId().toString())
+            binding?.editpassword?.setText(pref.getPass().toString())
+            viewModel.login(pref.getUserId().toString(),pref.getPass().toString())
+            binding?.run{
+                btnLogin.isEnabled = false //ボタンが無効になっていること
+                edituserId.isEnabled = false//入力不可能になる
+                editpassword.isEnabled = false//入力不可能になる
+            }
+        }
     }
     fun setupListener(){
         //loginボタンを押すと
         binding?.btnLogin?.setOnClickListener {
-            viewModel.login(binding?.edituserId?.text.toString(),binding?.editpassword?.text.toString())
-            showProgress()
+            //入力チェック
+            if(binding?.edituserId?.text.toString().length==0||binding?.editpassword?.text.toString().length==0){
+                if(binding?.edituserId?.text.toString().length==0){
+                    edituserId.setError("ユーザIDが未入力です。")
+                    edituserId.requestFocus();
+                }
+                if(binding?.editpassword?.text.toString().length==0){
+                    editpassword.setError("パスワードが未入力です。")
+                    editpassword.requestFocus();
+                }
+            }else{ //入力が十分の場合
+                viewModel.login(binding?.edituserId?.text.toString(),binding?.editpassword?.text.toString())
+                showProgress()
+            }
+
         }
         viewModel.resources.observe(this, {
             hiddenProgress()
                 if(it.data?.status.equals("success")){//成功の場合
-                    //ユーザ情報とJWTを保存する
                     val user : User? = it.data
                     if (user != null) {
+                        //ユーザ情報とJWTを保存する
                         pref.saveUser(user)
+                        pref.savePass(binding?.editpassword?.text.toString())
+                        pref.saveUserId(binding?.edituserId?.text.toString())
                     }
                     var intent: Intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)// 一覧画面に遷移する

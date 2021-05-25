@@ -5,9 +5,10 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 @JvmField
 val appModule = module{
+    //view model
     viewModel { LoginViewModel(get()) }
     // singleton
     single { PrefsManager() }
 }
-// Gather all app modules
+// app module
 val App = listOf(appModule, remoteDataSourceModule)

@@ -17,9 +17,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 val remoteDataSourceModule = module {
-    // provided web components
     single { createOkHttpClient() }
-    // Fill property
     single { createWebService<ApiServer>(get(), "http://192.168.1.6:8080/kenshuu/") }
     single<LoginRepository> { LoginRepositoryImpl(get()) }
     single <UserRepository> {UserRepositoryImpl(get())}
@@ -38,9 +36,6 @@ fun createOkHttpClient(): OkHttpClient {
 }
 
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
-    val gson: Gson = GsonBuilder()
-        .setLenient()
-        .create()
     val retrofit = Retrofit.Builder()
         .baseUrl(url)
         .client(okHttpClient)

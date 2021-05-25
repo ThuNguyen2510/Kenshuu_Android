@@ -60,7 +60,9 @@
                 android:layout_width="216dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="100dp"
-                android:id="@+id/edituserId"/>
+                android:id="@+id/edituserId"
+                android:lines="1"
+                android:maxLength="8"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -78,7 +80,9 @@
                 android:layout_height="40dp"
                 android:inputType="textPassword"
                 android:layout_marginLeft="100dp"
-                android:id="@+id/editpassword"/>
+                android:id="@+id/editpassword"
+                android:lines="1"
+                android:maxLength="8"/>
         </RelativeLayout>
 
 

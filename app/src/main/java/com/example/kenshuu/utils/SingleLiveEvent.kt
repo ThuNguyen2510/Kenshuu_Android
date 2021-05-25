@@ -26,11 +26,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     @MainThread
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
 
-        if (hasActiveObservers()) {
-            Log.w(TAG, "Multiple observers registered but only one will be notified of changes.")
-        }
-
-        // Observe the internal MutableLiveData
+        // 内部のMutableLiveDataを観察する
         super.observe(owner, Observer<T> { t ->
             if (pending.compareAndSet(true, false)) {
                 observer.onChanged(t)
@@ -55,4 +51,5 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     companion object {
         private const val TAG = "SingleLiveEvent"
     }
+
 }

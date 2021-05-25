@@ -26,7 +26,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)//画面を回転しても現在の画面のデータのままです
         binding = this.setBinding(layoutInflater)
         setContentView(binding?.root)
         onViewReady(savedInstanceState)
