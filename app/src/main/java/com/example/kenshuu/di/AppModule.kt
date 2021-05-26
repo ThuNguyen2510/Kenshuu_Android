@@ -1,5 +1,6 @@
 package com.example.kenshuu.di
 import com.example.kenshuu.ui.login.LoginViewModel
+import com.example.kenshuu.ui.main.MainViewModel
 import com.example.kenshuu.ui.slider.SliderViewModel
 import com.example.kenshuu.utils.PrefsManager
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -9,6 +10,7 @@ val appModule = module{
     //view model
     viewModel { LoginViewModel(get()) }
     viewModel { SliderViewModel(get()) }
+    viewModel { MainViewModel(get()) }
     // singleton
     single { PrefsManager() }
 }

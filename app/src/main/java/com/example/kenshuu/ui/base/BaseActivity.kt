@@ -3,6 +3,7 @@ package com.example.kenshuu.ui.base
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
+import kotlinx.android.synthetic.main.user_record.*
 
 
 abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
@@ -21,6 +23,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     val progress by lazy { findViewById<ConstraintLayout>(R.id.cslProgress)!! }//progress_view　を取る
     val toolbar by lazy{ findViewById<Toolbar>(R.id.toolbar)!!}// toolbar
+   /* val tvStt by lazy{ findViewById<TextView>(R.id.tvStt)!!}*/
     protected open var binding: T? = null
 
     protected abstract fun setBinding(inflater: LayoutInflater): T

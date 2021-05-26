@@ -27,6 +27,7 @@ class LoginActivity  : BaseActivity<ActLoginBinding>() {
         ActLoginBinding.inflate(inflater)
 
     override fun onViewReady(savedInstanceState: Bundle?) {
+
         setViews()
         setupListener()
     }
