@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.lifecycle.Observer
 import com.example.kenshuu.databinding.ActLoginBinding
 import com.example.kenshuu.model.DtUser
@@ -30,7 +31,9 @@ class LoginActivity  : BaseActivity<ActLoginBinding>() {
         setupListener()
     }
     fun setViews(){
-        if(pref.getUserName()!=null){//ログインしている場合、一覧画面に自動的に遷移する
+        binding?.toolbar?.btnDrawer?.visibility = View.INVISIBLE//メニューボタンが非表示される
+       setTitle("ログイン")
+        if(pref.getUserName()!=null){//ログインしている場合、ログインを自動的にして、一覧画面にに遷移する
             binding?.edituserId?.setText(pref.getUserId().toString())
             binding?.editpassword?.setText(pref.getPass().toString())
             viewModel.login(pref.getUserId().toString(),pref.getPass().toString())

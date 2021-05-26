@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 val remoteDataSourceModule = module {
     single { createOkHttpClient() }
-    single { createWebService<ApiServer>(get(), "http://192.168.1.6:8080/kenshuu/") }
+    single { createWebService<ApiServer>(get(), "http://192.168.1.7:8080/kenshuu/") }
     single<LoginRepository> { LoginRepositoryImpl(get()) }
     single <UserRepository> {UserRepositoryImpl(get())}
 }

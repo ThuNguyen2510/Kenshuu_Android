@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="5dp"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/bg_demo"
+     />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="80dp"
+        android:layout_height="18dp"
+        android:text="よろこそ 、"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="90dp"
+      />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="61dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="90dp"
+        android:text="Name"
+        android:layout_marginTop="90dp"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteY="84dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="73dp"
+        android:layout_height="18dp"
+        android:text="さん"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="180dp"
+        android:textColor="@android:color/black"
+        />
+
+
+</RelativeLayout>

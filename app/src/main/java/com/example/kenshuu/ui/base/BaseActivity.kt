@@ -13,12 +13,14 @@ import com.example.kenshuu.R
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.toolbar_layout.view.*
 
 
 abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     val progress by lazy { findViewById<ConstraintLayout>(R.id.cslProgress)!! }//progress_view　を取る
+    val toolbar by lazy{ findViewById<Toolbar>(R.id.toolbar)!!}// toolbar
     protected open var binding: T? = null
 
     protected abstract fun setBinding(inflater: LayoutInflater): T
@@ -30,6 +32,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         binding = this.setBinding(layoutInflater)
         setContentView(binding?.root)
         onViewReady(savedInstanceState)
+        toolbar.visibility= View.VISIBLE
     }
 
     override fun onDestroy() {
@@ -42,5 +45,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     fun hiddenProgress() {//非表示
         progress.visibility=View.INVISIBLE
     }
-
+     fun setTitle(title: String) {
+        toolbar.tvTitle.text= title
+    }
 }
