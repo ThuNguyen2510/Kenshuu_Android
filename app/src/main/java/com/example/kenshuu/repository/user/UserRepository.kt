@@ -7,4 +7,5 @@ import io.reactivex.rxjava3.core.Single
 interface UserRepository {
     fun queryAllUser(auth: String): Single<List<DtUser>>
     fun queryAllRole(auth: String): Single<List<Role>>
+    fun search(auth:String, user:DtUser): Single<List<DtUser>>
 }

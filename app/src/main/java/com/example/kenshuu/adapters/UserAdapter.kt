@@ -23,7 +23,7 @@ class UserAdapter(var context: Context, var listUser: List<DtUser>) : BaseAdapte
         var tvAuthorityName: TextView
         init{
             tvStt = row.findViewById(R.id.tvStt) as TextView
-            tvUserId = row.findViewById(R.id.tvStt) as TextView
+            tvUserId = row.findViewById(R.id.tvUserId) as TextView
             tvFullName = row.findViewById(R.id.tvFullName) as TextView
             tvAuthorityName = row.findViewById(R.id.tvAuthorityName) as TextView
         }
@@ -54,7 +54,7 @@ class UserAdapter(var context: Context, var listUser: List<DtUser>) : BaseAdapte
             viewholder= convertView.tag as ViewHolder
         }
         var user : DtUser = getItem(position) as DtUser
-        viewholder.tvStt.text=position.toString()
+        viewholder.tvStt.text=(position +1).toString()
         viewholder.tvUserId.text= user.userId
         viewholder.tvFullName.text= user.familyName +" "+user.firstName
         viewholder.tvAuthorityName.text= user.role?.authorityName

@@ -8,14 +8,15 @@ import retrofit2.Call
 import retrofit2.Response
 
 class ApiServerImpl(private val apiServer: ApiServer) : ApiServer {
-    override fun queryAllUser(auth: String): Single<List<DtUser>> = apiServer.queryAllUser(auth)
-    override fun search(user: DtUser): Single<List<DtUser>> {
-        TODO("Not yet implemented")
-    }
+    override fun queryAllUser(auth: String): Single<List<DtUser>> =
+        apiServer.queryAllUser(auth)
+
+    override fun search(auth: String, user: DtUser): Single<List<DtUser>> =
+        apiServer.search(auth, user)
 
     override fun queryAllRole(auth: String): Single<List<Role>> =
         apiServer.queryAllRole(auth)
 
-    override fun login(username: DtUser): Single<User> = apiServer.login(username)
+    override fun login(user: DtUser): Single<User> = apiServer.login(user)
 
 }

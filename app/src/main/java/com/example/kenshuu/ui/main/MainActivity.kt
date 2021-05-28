@@ -2,6 +2,7 @@ package com.example.kenshuu.ui.main
 
 import android.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -29,9 +30,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     var users: ArrayList<DtUser> = ArrayList()
     var roles = mutableListOf<String>()
     override fun onViewReady(savedInstanceState: Bundle?) {
-        setupData()
         setupViews()
+        setupData()
         setupListener()
+
     }
 
     fun setupViews() {
@@ -40,14 +42,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     fun setupListener() {
-
         binding?.run {
             navDrawer.setNavigationItemSelectedListener { item: MenuItem ->
                 item.isChecked = true
                 binding?.activityMainDrawer?.closeDrawers()
                 true
             }
-
+        }
+        binding?.btnSearch?.setOnClickListener {
+            users.clear()
+            val user: DtUser = DtUser(
+                familyName = edtFamilyName.text.toString(),
+                firstName = edtFirstName.text.toString(),
+                authorityId = spnAuthority.selectedItemPosition
+            )
+            viewModel.search(pref.getToken().toString(), user)
         }
     }
 
@@ -56,10 +65,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         viewModel.resources.observe(this, {
             if (it.data != null) {
                 val size: Int = it.data?.size
-                for (i in 0 until size) {
-                    users.add(it.data.get(i))
+                if (size == 0) {
+                    binding?.tvmessage?.text = "ユーザが見つかりませんでした。"
+                } else {
+                    for (i in 0 until size) {
+                        users.add(it.data.get(i))
+                    }
+                    binding?.listuser?.adapter =
+                        UserAdapter(this@MainActivity, users)//データをListViewに表示する
                 }
-                binding?.listuser?.adapter = UserAdapter(this@MainActivity, users)//データをListViewに表示する
+
             }
         })
         viewModel.queryAllRole(pref.getToken().toString())//役職を取る
@@ -80,8 +95,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
                     spnAuthority.adapter = adapter//役職名をselectに表示する
                 }
-
-
             })
     }
 

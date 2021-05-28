@@ -54,5 +54,22 @@ class MainViewModel(private val userRepository: UserRepository) : BaseViewModel(
                 }
         }
     }
+    fun search(token: String,user:DtUser){
+        launch{
+            userRepository.search(token,user)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { data, error->
+                    with(this) {
+                        if (error != null) {
+                            _resources.value =
+                                Resource.error(error.localizedMessage.orEmpty(), null)
+                            return@with
+                        }
+                        _resources.value = Resource.success(data)
+                    }
+                }
+        }
+    }
 
 }

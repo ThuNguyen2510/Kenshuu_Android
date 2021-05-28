@@ -12,19 +12,20 @@ import retrofit2.http.*
 interface ApiServer {
     @Headers("Content-Type: application/json")
     @GET("api-user")
-    fun queryAllUser(@Header("Authorization")auth: String ): Single<List<DtUser>>
+    fun queryAllUser(@Header("Authorization") auth: String): Single<List<DtUser>>
 
-    @GET("api-search")
-    fun search(user: DtUser): Single<List<DtUser>>
+    @Headers("Content-Type: application/json")
+    @POST("api-search")
+    fun search(@Header("Authorization") auth: String, @Body user:DtUser): Single<List<DtUser>>
 
     @Headers("Content-Type: application/json")
     @GET("api-authority")
-    fun queryAllRole(@Header("Authorization")auth: String): Single<List<Role>>
+    fun queryAllRole(@Header("Authorization") auth: String): Single<List<Role>>
 
     @Headers("Content-Type: application/json")
     @POST("auth")
     fun login(
-        @Body userId: DtUser
+        @Body user: DtUser
     ): Single<User>
 
 }

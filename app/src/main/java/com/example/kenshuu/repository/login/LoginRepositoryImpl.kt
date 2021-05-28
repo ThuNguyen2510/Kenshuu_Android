@@ -8,8 +8,6 @@ import retrofit2.Call
 import retrofit2.Response
 
 class LoginRepositoryImpl (private val apiServer: ApiServer) : LoginRepository {
-    override fun login(userId: DtUser): Single<User> =
-        apiServer.login(userId)
-
-
+    override fun login(user: DtUser): Single<User> =
+        apiServer.login(user)
 }

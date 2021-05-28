@@ -124,10 +124,25 @@
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout android:background="@drawable/shape"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="160dp">
+
+            <TextView
+                android:id="@+id/tvmessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="15dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:layout_marginTop="200dp">
+            android:layout_marginTop="200dp"
+            android:background="@drawable/shape">
 
             <LinearLayout
                 android:id="@+id/linearLayout1"
@@ -175,13 +190,12 @@
 
             </LinearLayout>
 
-
             <ListView
-                android:background="@drawable/shape"
                 android:id="@+id/listuser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/shape"
                 android:divider="#FFCC00"></ListView>
 
         </RelativeLayout>

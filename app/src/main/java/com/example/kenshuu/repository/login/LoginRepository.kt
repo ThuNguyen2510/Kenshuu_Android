@@ -7,5 +7,5 @@ import retrofit2.Call
 import retrofit2.Response
 
 interface LoginRepository {
-    fun login(userId: DtUser): Single<User>
+    fun login(user: DtUser): Single<User>
 }

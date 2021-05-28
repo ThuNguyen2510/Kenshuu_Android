@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:gravity="right" />
+        android:baselineAligned="false"
+        android:paddingStart="70dp" />
 
     <TextView
         android:id="@+id/tvUserId"
