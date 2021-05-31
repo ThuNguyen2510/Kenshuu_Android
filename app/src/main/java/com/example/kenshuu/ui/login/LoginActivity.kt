@@ -31,7 +31,7 @@ class LoginActivity  : BaseActivity<ActLoginBinding>() {
         setupListener()
     }
     fun setViews(){
-        binding?.toolbar?.btnDrawer?.visibility = View.INVISIBLE//メニューボタンが非表示される
+       binding?.toolbar?.btnDrawer?.visibility = View.INVISIBLE//メニューボタンが非表示される
        setTitle("ログイン")
         if(pref.getUserName()!=null){//ログインしている場合、ログインを自動的にして、一覧画面にに遷移する
             binding?.edituserId?.setText(pref.getUserId().toString())
@@ -78,6 +78,9 @@ class LoginActivity  : BaseActivity<ActLoginBinding>() {
                 }
                 else {//失敗の場合
                     binding?.message?.text="ログインが失敗しました。"
+                    btnLogin.isEnabled = true //ボタンが効になっていること
+                    edituserId.isEnabled = true//入力可能になる
+                    editpassword.isEnabled = true//入力可能になる
                 }
 
         })

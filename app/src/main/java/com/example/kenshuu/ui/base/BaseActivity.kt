@@ -51,4 +51,5 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
      fun setTitle(title: String) {
         toolbar.tvTitle.text= title
     }
+
 }

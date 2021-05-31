@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="80dp"
+        android:textAlignment="center">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ユーザID:"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvUserId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="userId"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="パスワード:"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:text="userId"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓:"
+
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvFamilyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="userId"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="名:"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="userId"
+                android:textSize="20dp" />
+        </TableRow>
+
+
+        <TableRow android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="年齢:"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvAge"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:text=""
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性別:"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp" />
+
+        </TableRow>
+
+        <TableRow >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="役職:"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvAuthorityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="userId"
+                android:textSize="20dp" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="管理者:"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="252dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="140dp"
+                android:layout_height="fill_parent"
+                android:text="更新" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="削除" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnReturn"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="戻る" />
+        </TableRow>
+
+
+    </TableLayout>
+
+</RelativeLayout>

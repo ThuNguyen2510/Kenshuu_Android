@@ -49,7 +49,6 @@ class UserAdapter(var context: Context, var listUser: List<DtUser>) : BaseAdapte
             viewholder = ViewHolder(view)
             view.tag = viewholder
         }else{
-            // run lan 2
             view = convertView
             viewholder= convertView.tag as ViewHolder
         }

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/red"
+        android:textSize="20dp" />
+
+    <TableLayout
+        android:layout_width="330dp"
+        android:layout_height="512dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="130dp"
+        android:textAlignment="center">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ユーザID:"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/tvUserId"
+                android:layout_width="172dp"
+                android:maxLength="8"
+                android:layout_height="wrap_content"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="パスワード:"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/tvPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:maxLength="8"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓:"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/tvFamilyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="名:"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/tvFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:textSize="20dp" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="年齢:"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/tvAge"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:inputType="number"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性別:"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/spnGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="役職:"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/spnAuthorityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="userId"
+                android:textSize="20dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="49dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="管理者:"
+                android:textSize="20dp" />
+
+            <CheckBox
+                android:id="@+id/cbAdmin"
+                android:layout_width="174dp"
+                android:layout_height="match_parent" />
+        </TableRow>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp">
+
+            <Button
+                android:id="@+id/btnReturn"
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="戻る" />
+            <Button
+                android:id="@+id/btnCreate"
+                android:layout_marginStart="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登録" />
+
+        </RelativeLayout>
+
+
+    </TableLayout>
+
+</RelativeLayout>

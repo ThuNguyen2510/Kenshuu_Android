@@ -1,5 +1,6 @@
 package com.example.kenshuu.data
 
+import com.example.kenshuu.model.Count
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.model.Role
 import com.example.kenshuu.model.User
@@ -17,6 +18,13 @@ class ApiServerImpl(private val apiServer: ApiServer) : ApiServer {
     override fun queryAllRole(auth: String): Single<List<Role>> =
         apiServer.queryAllRole(auth)
 
-    override fun login(user: DtUser): Single<User> = apiServer.login(user)
+    override fun login(user: DtUser): Single<User> =
+        apiServer.login(user)
+
+    override fun logout() : Single<String> =
+        apiServer.logout()
+
+    override fun getTotal(auth: String): Single<List<Count>> =
+        apiServer.getTotal(auth)
 
 }

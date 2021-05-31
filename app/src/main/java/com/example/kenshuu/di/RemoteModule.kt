@@ -3,6 +3,8 @@ package com.example.kenshuu.di
 import com.example.kenshuu.data.ApiServer
 import com.example.kenshuu.repository.login.LoginRepository
 import com.example.kenshuu.repository.login.LoginRepositoryImpl
+import com.example.kenshuu.repository.total.CountRepository
+import com.example.kenshuu.repository.total.CountRepositoryImpl
 import com.example.kenshuu.repository.user.UserRepository
 import com.example.kenshuu.repository.user.UserRepositoryImpl
 import com.google.gson.Gson
@@ -18,9 +20,10 @@ import java.util.concurrent.TimeUnit
 
 val remoteDataSourceModule = module {
     single { createOkHttpClient() }
-    single { createWebService<ApiServer>(get(), "http://192.168.1.7:8080/kenshuu/") }
+    single { createWebService<ApiServer>(get(), "http://192.168.1.4:8080/kenshuu/") }
     single<LoginRepository> { LoginRepositoryImpl(get()) }
-    single <UserRepository> {UserRepositoryImpl(get())}
+    single<UserRepository> { UserRepositoryImpl(get()) }
+    single<CountRepository> { CountRepositoryImpl(get()) }
 }
 
 fun createOkHttpClient(): OkHttpClient {

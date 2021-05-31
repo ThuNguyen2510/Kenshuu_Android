@@ -15,4 +15,5 @@ class UserRepositoryImpl (private val apiServer: ApiServer) : UserRepository{
 
     override fun search(auth: String, user: DtUser): Single<List<DtUser>> =
         apiServer.search(auth,user)
+
 }

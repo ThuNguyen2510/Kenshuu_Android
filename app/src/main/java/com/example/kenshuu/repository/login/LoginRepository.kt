@@ -8,4 +8,5 @@ import retrofit2.Response
 
 interface LoginRepository {
     fun login(user: DtUser): Single<User>
+    fun logout(): Single<String>
 }

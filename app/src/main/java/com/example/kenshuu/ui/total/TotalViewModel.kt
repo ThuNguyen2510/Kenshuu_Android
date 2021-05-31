@@ -1,35 +1,34 @@
-package com.example.kenshuu.ui.slider
+package com.example.kenshuu.ui.total
 
-import com.example.kenshuu.model.DtUser
-import com.example.kenshuu.repository.login.LoginRepository
+import android.util.Log
+import com.example.kenshuu.model.Count
+import com.example.kenshuu.repository.total.CountRepository
 import com.example.kenshuu.ui.base.BaseViewModel
 import com.example.kenshuu.ui.base.Resource
 import com.example.kenshuu.utils.SingleLiveEvent
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class SliderViewModel(private val loginRepository: LoginRepository) : BaseViewModel() {
-    private val _flag = SingleLiveEvent<Resource<String>>()
-    val flag: SingleLiveEvent<Resource<String>>
-        get() = _flag
+class TotalViewModel(private val countRepository: CountRepository): BaseViewModel() {
+    private val _resources = SingleLiveEvent<Resource<List<Count>>>()
+    val resources: SingleLiveEvent<Resource<List<Count>>>
+        get() = _resources
 
-    fun logout() {
+    fun getTotal(token: String){
         launch {
-            loginRepository.logout()
+            countRepository.getTotal(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { data, error ->
                     with(this) {
                         if (error != null) {
-                            _flag.value =
+                            _resources.value =
                                 Resource.error(error.localizedMessage.orEmpty(), null)
                             return@with
                         }
-                        _flag.value = Resource.success(data)
+                        _resources.value = Resource.success(data)
                     }
                 }
         }
-
-
     }
 }

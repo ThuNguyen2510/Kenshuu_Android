@@ -1,5 +1,6 @@
 package com.example.kenshuu.data
 
+import com.example.kenshuu.model.Count
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.model.Role
 import com.example.kenshuu.model.User
@@ -16,7 +17,7 @@ interface ApiServer {
 
     @Headers("Content-Type: application/json")
     @POST("api-search")
-    fun search(@Header("Authorization") auth: String, @Body user:DtUser): Single<List<DtUser>>
+    fun search(@Header("Authorization") auth: String, @Body user: DtUser): Single<List<DtUser>>
 
     @Headers("Content-Type: application/json")
     @GET("api-authority")
@@ -27,5 +28,13 @@ interface ApiServer {
     fun login(
         @Body user: DtUser
     ): Single<User>
+
+    @Headers("Content-Type: application/json")
+    @GET("auth")
+    fun logout(): Single<String>
+
+    @Headers("Content-Type: application/json")
+    @GET("api-count")
+    fun getTotal(@Header("Authorization") auth: String): Single<List<Count>>
 
 }

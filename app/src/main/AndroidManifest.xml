@@ -12,8 +12,10 @@
         android:name=".ui.base.BaseApplication"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.main.MainActivity">
-
         </activity>
+        <activity android:name=".ui.total.TotalActivity"/>
+        <activity android:name=".ui.user.read.ViewUserActivity"/>
+        <activity android:name=".ui.user.create.CreateUserActivity"/>
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

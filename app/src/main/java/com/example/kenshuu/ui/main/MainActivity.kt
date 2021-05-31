@@ -1,10 +1,10 @@
 package com.example.kenshuu.ui.main
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.core.view.GravityCompat
@@ -13,8 +13,10 @@ import com.example.kenshuu.databinding.ActivityMainBinding
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.model.Role
 import com.example.kenshuu.ui.base.BaseActivity
+import com.example.kenshuu.ui.user.read.ViewUserActivity
 import com.example.kenshuu.utils.PrefsManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.frag_slider.*
 import kotlinx.android.synthetic.main.user_record.*
 import org.koin.android.ext.android.inject
 import java.util.*
@@ -42,13 +44,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     fun setupListener() {
-        binding?.run {
-            navDrawer.setNavigationItemSelectedListener { item: MenuItem ->
-                item.isChecked = true
-                binding?.activityMainDrawer?.closeDrawers()
-                true
-            }
-        }
         binding?.btnSearch?.setOnClickListener {
             users.clear()
             val user: DtUser = DtUser(
@@ -58,11 +53,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             )
             viewModel.search(pref.getToken().toString(), user)
         }
+
     }
 
     fun setupData() {
         viewModel.queryAllUser(pref.getToken().toString())//全てのデータを取る
-        viewModel.resources.observe(this, {
+        viewModel.users.observe(this, {
             if (it.data != null) {
                 val size: Int = it.data?.size
                 if (size == 0) {
@@ -79,7 +75,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         })
         viewModel.queryAllRole(pref.getToken().toString())//役職を取る
         roles.add("")
-        viewModel.roleresources.observe(this,
+        viewModel.roles.observe(this,
             {
                 if (it.data != null) {
                     for (i in 0 until it.data.size) {
@@ -96,6 +92,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     spnAuthority.adapter = adapter//役職名をselectに表示する
                 }
             })
+        binding?.listuser?.setOnItemClickListener { parent, view, position, id ->
+            val user: DtUser = parent.getItemAtPosition(position) as DtUser //指定行のユーザを取る
+            val b = Bundle()
+            b.putParcelable("selectedUser", user)
+            val intent: Intent= Intent(this,ViewUserActivity::class.java)
+            intent.putExtra("myBundle",b)//ユーザを保持して転送する
+            startActivity(intent)//ユーザの詳細画面に遷移する
+        }
     }
 
     fun closeDrawer() {
@@ -105,5 +109,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun openDrawer(v: View) {
         binding?.activityMainDrawer?.openDrawer(GravityCompat.START)
     }
+
 
 }

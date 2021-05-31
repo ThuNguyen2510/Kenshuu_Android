@@ -13,6 +13,10 @@
         <include
             android:id="@+id/drawerHeader"
             layout="@layout/drawer_header" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
 
         <LinearLayout
             android:id="@+id/lnTotal"
@@ -23,7 +27,6 @@
             android:focusable="true"
             android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables">
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,6 +49,7 @@
             tools:ignore="UseCompoundDrawables">
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -66,6 +70,7 @@
             tools:ignore="UseCompoundDrawables">
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
