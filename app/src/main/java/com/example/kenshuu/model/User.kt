@@ -15,14 +15,14 @@ data class User (
 
 @Parcelize
 data class DtUser (
-    val userId: String? = null,
-    val password: String? = null,
-    val familyName: String? = null,
-    val firstName: String? = null,
-    val age: Int? =null,
-    val admin: Int? =null,
-    val authorityId: Int? =null,
-    val genderId: Int? =null,
+    val userId: String? = "",
+    val password: String? = "",
+    val familyName: String? = "",
+    val firstName: String? = "",
+    val age: Int? =0,
+    val admin: Int? =0,
+    val authorityId: Int? =0,
+    val genderId: Int? =0,
     val createDate: Long? = null,
     val updateDate: Long? = null,
     val createUserId: String? = null,

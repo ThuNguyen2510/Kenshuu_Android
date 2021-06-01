@@ -30,17 +30,14 @@ class SliderFragment : BaseFragment<FragSliderBinding, MainActivity>() {
         setupViews()
     }
     private val pref : PrefsManager by inject()
-    private val TAG = "__SliderFragment"
     private val viewModel : SliderViewModel by inject()
 
     fun setupViews() {
-        Log.d(TAG, "setupViews: ")
-
         binding?.run {
             drawerHeader.tvUserName.text = pref.getUserName()
             lnTotal.setOnClickListener{
                 val intent: Intent = Intent(this@SliderFragment.context,TotalActivity::class.java)
-                startActivity(intent)
+                startActivity(intent)//集計画面に遷移する
             }
             lnLogout.setOnClickListener{
                 pref.clearUser()//ログインしているユーザを削除する

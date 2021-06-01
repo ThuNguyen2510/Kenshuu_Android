@@ -1,9 +1,6 @@
 package com.example.kenshuu.data
 
-import com.example.kenshuu.model.Count
-import com.example.kenshuu.model.DtUser
-import com.example.kenshuu.model.Role
-import com.example.kenshuu.model.User
+import com.example.kenshuu.model.*
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Call
@@ -24,6 +21,14 @@ interface ApiServer {
     fun queryAllRole(@Header("Authorization") auth: String): Single<List<Role>>
 
     @Headers("Content-Type: application/json")
+    @GET("api-gender")
+    fun queryAllGender(@Header("Authorization") auth: String): Single<List<Gender>>
+
+    @Headers("Content-Type: application/json")
+    @GET("api-count")
+    fun getTotal(@Header("Authorization") auth: String): Single<List<Count>>
+
+    @Headers("Content-Type: application/json")
     @POST("auth")
     fun login(
         @Body user: DtUser
@@ -34,7 +39,10 @@ interface ApiServer {
     fun logout(): Single<String>
 
     @Headers("Content-Type: application/json")
-    @GET("api-count")
-    fun getTotal(@Header("Authorization") auth: String): Single<List<Count>>
+    @POST("api-user")
+    fun createUser(
+        @Header("Authorization") auth: String,
+        @Body user: DtUser
+    ): Single<Flag>
 
 }
