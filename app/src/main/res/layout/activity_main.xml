@@ -33,6 +33,7 @@
                     android:id="@+id/tvFamilyName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
                     android:text="姓:"
                     android:textSize="20dp" />
 
@@ -62,6 +63,7 @@
                     android:id="@+id/tvFirstName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
                     android:text="名:"
                     android:textSize="20dp" />
 
@@ -85,9 +87,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:paddingTop="10dp"
                 android:paddingBottom="20dp">
 
                 <TextView
+
                     android:id="@+id/tvAuthority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,8 +100,8 @@
 
                 <Spinner
                     android:id="@+id/spnAuthority"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp" />
             </RelativeLayout>
 
@@ -150,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:paddingBottom="20dp">
+                android:background="@drawable/shape">
 
                 <TextView
                     android:id="@+id/textView1"
@@ -160,6 +164,11 @@
                     android:gravity="center"
                     android:text="No" />
 
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/black" />
+
                 <TextView
                     android:id="@+id/textView2_"
                     android:layout_width="80dp"
@@ -167,6 +176,11 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="left"
                     android:text="ユーザID" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/black" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -176,6 +190,11 @@
                     android:gravity="left"
                     android:text="氏名" />
 
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/black" />
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="110dp"
@@ -184,6 +203,7 @@
                     android:gravity="left"
                     android:text="役職" />
 
+
             </LinearLayout>
 
             <ListView
@@ -191,8 +211,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="390dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/shape"
-                android:divider="#FFCC00"></ListView>
+                android:divider="#090908"
+                android:dividerHeight="1dp"></ListView>
 
         </RelativeLayout>
 

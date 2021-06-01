@@ -57,6 +57,7 @@ class UserAdapter(var context: Context, var listUser: List<DtUser>) : BaseAdapte
         viewholder.tvUserId.text= user.userId
         viewholder.tvFullName.text= user.familyName +" "+user.firstName
         viewholder.tvAuthorityName.text= user.role?.authorityName
+        if(user.admin==1) viewholder.tvAuthorityName.text= "★"+user.role?.authorityName
         return view as View
     }
 }

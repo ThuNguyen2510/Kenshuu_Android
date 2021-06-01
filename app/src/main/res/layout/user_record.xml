@@ -10,8 +10,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="center"
-        android:text="5"
         android:paddingStart="10dp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black" />
+
 
     <TextView
         android:id="@+id/tvUserId"
@@ -20,6 +25,11 @@
         android:layout_gravity="center_vertical"
         android:gravity="left" />
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black" />
+
     <TextView
         android:id="@+id/tvFullName"
         android:layout_width="160dp"
@@ -27,11 +37,21 @@
         android:layout_gravity="center_vertical"
         android:gravity="left" />
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black" />
+
     <TextView
         android:id="@+id/tvAuthorityName"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="left" />
+
+    <!--    <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black" />-->
 
 </LinearLayout>

@@ -18,16 +18,15 @@
             android:id="@+id/tvmessage"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:textColor="@color/blue"
-            android:textSize="15sp"
             android:paddingTop="30dp"
-            />
+            android:textColor="@color/blue"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:layout_marginBottom="120dp">
 
@@ -38,16 +37,21 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:paddingBottom="20dp">
+            android:background="@drawable/shape">
 
             <TextView
                 android:id="@+id/textView1"
-                android:layout_width="120dp"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:padding="10dp"
                 android:text="役職" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
+
 
             <TextView
                 android:id="@+id/textView2_"
@@ -57,6 +61,11 @@
                 android:gravity="center"
                 android:text="男の人数" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="42dp"
@@ -64,6 +73,11 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:text="女の人数" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -74,6 +88,11 @@
                 android:text="未登録の人数"
                 android:textColor="@color/red" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
+
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="45dp"
@@ -81,6 +100,11 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:text="20歳未満人数" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -90,9 +114,14 @@
                 android:gravity="center"
                 android:text="20歳以下人数" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
+
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="45dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
@@ -101,22 +130,21 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="60dp">
 
-            <ListView
-                android:id="@+id/lvtotal"
-                android:layout_width="match_parent"
-                android:layout_height="224dp" />
-        </LinearLayout>
+        <ListView
+            android:id="@+id/lvtotal"
+            android:layout_width="match_parent"
+            android:layout_height="224dp"
+            android:layout_marginTop="60dp"
+            android:divider="#090908"
+            android:dividerHeight="1dp" />
+
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="450dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp">
 
         <Button
             android:id="@+id/btnReturn"
@@ -124,13 +152,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:text="一覧へ戻る"></Button>
+
         <Button
             android:id="@+id/btnCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
-            android:text="集計"
-            ></Button>
+            android:text="集計"></Button>
     </RelativeLayout>
 
 

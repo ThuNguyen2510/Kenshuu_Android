@@ -20,4 +20,7 @@ class UserRepositoryImpl (private val apiServer: ApiServer) : UserRepository{
     override fun createUser(auth: String,user: DtUser): Single<Flag> =
         apiServer.createUser(auth,user)
 
+    override fun deleteUser(auth: String, user: DtUser): Single<Flag> =
+        apiServer.deleteUser(auth, user)
+
 }

@@ -9,8 +9,10 @@ import com.example.kenshuu.databinding.ActViewUserBinding
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.ui.base.BaseActivity
 import com.example.kenshuu.ui.main.MainActivity
+import com.example.kenshuu.ui.user.delete.DeleteUserActivity
 
 class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
+    var user: DtUser = DtUser()
     override fun setBinding(inflater: LayoutInflater): ActViewUserBinding =
         ActViewUserBinding.inflate(inflater)
 
@@ -27,7 +29,7 @@ class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
 
     private fun setupData() {
         val bundle: Bundle? = intent.getBundleExtra("myBundle")
-        val user: DtUser = bundle?.getParcelable<DtUser>("selectedUser") as DtUser
+        user = bundle?.getParcelable<DtUser>("selectedUser") as DtUser
         binding?.run {
             tvUserId.text = user.userId
             tvPassword.text = user.password
@@ -42,8 +44,15 @@ class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
 
     private fun setupListener() {
         binding?.btnReturn?.setOnClickListener {
-            val intent: Intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            val intent: Intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)//一覧画面に遷移する
+        }
+        binding?.btnDelete?.setOnClickListener {
+            val intent: Intent = Intent(this, DeleteUserActivity::class.java)
+            val b = Bundle()
+            b.putParcelable("selectedUser", user)
+            intent.putExtra("myBundle",b)
+            startActivity(intent)//削除画面に遷移する
         }
 
     }

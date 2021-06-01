@@ -45,4 +45,11 @@ interface ApiServer {
         @Body user: DtUser
     ): Single<Flag>
 
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path = "api-user", hasBody = true)
+    fun deleteUser(
+        @Header("Authorization") auth: String,
+        @Body user: DtUser
+    ): Single<Flag>
+
 }
