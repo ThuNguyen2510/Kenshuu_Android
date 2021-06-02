@@ -10,6 +10,8 @@ import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.ui.base.BaseActivity
 import com.example.kenshuu.ui.main.MainActivity
 import com.example.kenshuu.ui.user.delete.DeleteUserActivity
+import com.example.kenshuu.ui.user.update.UpdateUserActivity
+import org.koin.android.ext.android.bind
 
 class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
     var user: DtUser = DtUser()
@@ -53,6 +55,13 @@ class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
             b.putParcelable("selectedUser", user)
             intent.putExtra("myBundle",b)
             startActivity(intent)//削除画面に遷移する
+        }
+        binding?.btnEdit?.setOnClickListener {
+            val intent: Intent = Intent(this, UpdateUserActivity::class.java)
+            val b = Bundle()
+            b.putParcelable("selectedUser", user)
+            intent.putExtra("myBundle",b)
+            startActivity(intent)//更新画面に遷移する
         }
 
     }

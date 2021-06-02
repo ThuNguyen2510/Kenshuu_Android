@@ -18,6 +18,7 @@
         <activity android:name=".ui.user.create.CreateUserActivity"/>
         <activity android:name=".ui.success.SuccessActivity"/>
         <activity android:name=".ui.user.delete.DeleteUserActivity"/>
+        <activity android:name=".ui.user.update.UpdateUserActivity"/>
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

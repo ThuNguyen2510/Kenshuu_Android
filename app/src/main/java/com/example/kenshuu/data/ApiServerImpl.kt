@@ -30,6 +30,9 @@ class ApiServerImpl(private val apiServer: ApiServer) : ApiServer {
     override fun deleteUser(auth: String, user: DtUser): Single<Flag> =
         apiServer.deleteUser(auth, user)
 
+    override fun updateUser(auth: String, user: DtUser): Single<Flag> =
+        apiServer.updateUser(auth, user)
+
     override fun getTotal(auth: String): Single<List<Count>> =
         apiServer.getTotal(auth)
 

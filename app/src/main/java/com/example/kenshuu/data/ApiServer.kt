@@ -52,4 +52,11 @@ interface ApiServer {
         @Body user: DtUser
     ): Single<Flag>
 
+    @Headers("Content-Type: application/json")
+    @PUT("api-user")
+    fun updateUser(
+        @Header("Authorization") auth: String,
+        @Body user: DtUser
+    ): Single<Flag>
+
 }

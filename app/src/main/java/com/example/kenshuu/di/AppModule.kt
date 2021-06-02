@@ -6,6 +6,7 @@ import com.example.kenshuu.ui.total.TotalViewModel
 import com.example.kenshuu.ui.user.create.CreateUserViewModel
 import com.example.kenshuu.ui.user.delete.DeleteUserActivity
 import com.example.kenshuu.ui.user.delete.DeleteUserViewModel
+import com.example.kenshuu.ui.user.update.UpdateUserViewModel
 import com.example.kenshuu.utils.PrefsManager
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,6 +19,7 @@ val appModule = module{
     viewModel { TotalViewModel(get()) }
     viewModel { CreateUserViewModel(get()) }
     viewModel { DeleteUserViewModel(get()) }
+    viewModel { UpdateUserViewModel(get()) }
     // singleton
     single { PrefsManager() }
 }

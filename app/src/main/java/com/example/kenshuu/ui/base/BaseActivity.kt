@@ -26,7 +26,8 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     val progress by lazy { findViewById<ConstraintLayout>(R.id.cslProgress)!! }//progress_view　を取る
     val toolbar by lazy{ findViewById<Toolbar>(R.id.toolbar)!!}// toolbar
-
+    var hashMapRole: HashMap<Int, String> = HashMap<Int, String>()
+    var hashMapGender: HashMap<Int, String> = HashMap<Int, String>()
     protected open var binding: T? = null
 
     protected abstract fun setBinding(inflater: LayoutInflater): T
@@ -51,9 +52,25 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     fun hiddenProgress() {//非表示
         progress.visibility=View.INVISIBLE
     }
-     fun setTitle(title: String) {
+     fun setTitle(title: String) {//画面のタイトルを設定する
         toolbar.tvTitle.text= title
     }
+    fun getAuthorityId(authorityName: String): Int {//役職IDを取る
+        var id: Int = 0
+        for (key in hashMapRole.keys) {
+            if (hashMapRole[key].equals(authorityName))
+                id = key
+        }
+        return id
+    }
 
+    fun getGenderId(gender: String): Int {//性別IDを取る
+        var id: Int = 0
+        for (key in hashMapGender.keys) {
+            if (hashMapGender[key].equals(gender))
+                id = key
+        }
+        return id
+    }
 
 }

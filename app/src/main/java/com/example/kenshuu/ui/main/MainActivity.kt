@@ -61,9 +61,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         viewModel.users.observe(this, {
             if (it.data != null) {
                 val size: Int = it.data?.size
-                if (size == 0) {
+                if (size == 0) {//結果がない
                     binding?.tvmessage?.text = "ユーザが見つかりませんでした。"
-                } else {
+                } else {//結果がある
+                    binding?.tvmessage?.text =""
                     for (i in 0 until size) {
                         users.add(it.data.get(i))
                     }

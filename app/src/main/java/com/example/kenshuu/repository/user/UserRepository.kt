@@ -13,4 +13,5 @@ interface UserRepository {
     fun search(auth:String, user:DtUser): Single<List<DtUser>>
     fun createUser(auth: String,user: DtUser): Single<Flag>
     fun deleteUser(auth: String,user: DtUser): Single<Flag>
+    fun updateUser(auth: String,user: DtUser): Single<Flag>
 }
