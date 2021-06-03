@@ -7,15 +7,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.kenshuu.databinding.ActCreateUserBinding
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.model.Gender
 import com.example.kenshuu.model.Role
 import com.example.kenshuu.ui.base.BaseActivity
+import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.main.MainActivity
 import com.example.kenshuu.ui.success.SuccessActivity
 import com.example.kenshuu.utils.PrefsManager
 import kotlinx.android.synthetic.main.act_create_user.*
+import org.koin.android.ext.android.bind
 import org.koin.android.ext.android.inject
 
 class CreateUserActivity : BaseActivity<ActCreateUserBinding>() {
@@ -24,12 +27,41 @@ class CreateUserActivity : BaseActivity<ActCreateUserBinding>() {
 
     private val viewModel: CreateUserViewModel by inject()
     private val pref: PrefsManager by inject()
-    var roles = mutableListOf<String>()
-    var genders = mutableListOf<String>()
     override fun onViewReady(savedInstanceState: Bundle?) {
         setupViews()
         setupData()
         setupListener()
+        setSwipe()
+    }
+
+    private fun setSwipe() {
+        layout = binding?.createUserContent!!
+        layout.setOnTouchListener(object : OnSwipeTouchListener(this) {
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                roles.clear()
+                genders.clear()
+                binding?.run {
+                    edtUserId.text.clear()
+                    edtPassword.text.clear()
+                    edtFamilyName.text.clear()
+                    edtFirstName.text.clear()
+                    edtAge.text.clear()
+                    spnAuthorityName.setSelection(0)
+                    spnGender.setSelection(0)
+                    cbAdmin.isChecked=false
+                }
+                setupData()
+                Toast.makeText(this@CreateUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                    .show()
+            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                val intent: Intent = Intent(this@CreateUserActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+        })
     }
 
     private fun setupData() {

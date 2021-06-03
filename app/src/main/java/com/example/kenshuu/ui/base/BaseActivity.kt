@@ -2,20 +2,24 @@ package com.example.kenshuu.ui.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.viewbinding.ViewBinding
 import com.example.kenshuu.R
 import com.example.kenshuu.ui.main.MainActivity
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import kotlinx.android.synthetic.main.user_record.*
@@ -28,8 +32,10 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     val toolbar by lazy{ findViewById<Toolbar>(R.id.toolbar)!!}// toolbar
     var hashMapRole: HashMap<Int, String> = HashMap<Int, String>()
     var hashMapGender: HashMap<Int, String> = HashMap<Int, String>()
+    var roles = mutableListOf<String>()
+    var genders = mutableListOf<String>()
     protected open var binding: T? = null
-
+    lateinit var layout: RelativeLayout
     protected abstract fun setBinding(inflater: LayoutInflater): T
     protected abstract fun onViewReady(savedInstanceState: Bundle?)
 
@@ -55,6 +61,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
      fun setTitle(title: String) {//画面のタイトルを設定する
         toolbar.tvTitle.text= title
     }
+
     fun getAuthorityId(authorityName: String): Int {//役職IDを取る
         var id: Int = 0
         for (key in hashMapRole.keys) {

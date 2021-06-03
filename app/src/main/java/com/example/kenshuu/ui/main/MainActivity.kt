@@ -7,12 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.example.kenshuu.adapters.UserAdapter
 import com.example.kenshuu.databinding.ActivityMainBinding
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.model.Role
 import com.example.kenshuu.ui.base.BaseActivity
+import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.user.read.ViewUserActivity
 import com.example.kenshuu.utils.PrefsManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,17 +33,31 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         ActivityMainBinding.inflate(inflater)
 
     var users: ArrayList<DtUser> = ArrayList()
-    var roles = mutableListOf<String>()
     override fun onViewReady(savedInstanceState: Bundle?) {
         setupViews()
         setupData()
         setupListener()
+        setSwipe()
+    }
+    fun setSwipe(){
+        layout= binding?.contentRelative!!
+        layout.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity) {
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                users.clear()
+                viewModel.queryAllUser(pref.getToken().toString())//全てのデータを取る
+                Toast.makeText(this@MainActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                    .show()
+            }
+
+        })
 
     }
 
     fun setupViews() {
         binding?.toolbar?.cslToolbar?.visibility = View.VISIBLE //メニューボタンを表示する
         setTitle("一覧")
+
     }
 
     fun setupListener() {
@@ -64,7 +81,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 if (size == 0) {//結果がない
                     binding?.tvmessage?.text = "ユーザが見つかりませんでした。"
                 } else {//結果がある
-                    binding?.tvmessage?.text =""
+                    binding?.tvmessage?.text = ""
                     for (i in 0 until size) {
                         users.add(it.data.get(i))
                     }
@@ -97,8 +114,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             val user: DtUser = parent.getItemAtPosition(position) as DtUser //指定行のユーザを取る
             val b = Bundle()
             b.putParcelable("selectedUser", user)
-            val intent: Intent= Intent(this,ViewUserActivity::class.java)
-            intent.putExtra("myBundle",b)//ユーザを保持して転送する
+            val intent: Intent = Intent(this, ViewUserActivity::class.java)
+            intent.putExtra("myBundle", b)//ユーザを保持して転送する
             startActivity(intent)//ユーザの詳細画面に遷移する
         }
     }

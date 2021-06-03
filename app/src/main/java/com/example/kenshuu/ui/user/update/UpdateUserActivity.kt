@@ -7,11 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.kenshuu.databinding.ActUpdateUserBinding
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.model.Gender
 import com.example.kenshuu.model.Role
 import com.example.kenshuu.ui.base.BaseActivity
+import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.main.MainActivity
 import com.example.kenshuu.ui.success.SuccessActivity
 import com.example.kenshuu.utils.PrefsManager
@@ -24,8 +26,6 @@ import org.koin.android.ext.android.inject
 class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
     private val viewModel: UpdateUserViewModel by inject()
     private val pref: PrefsManager by inject()
-    var roles = mutableListOf<String>()
-    var genders = mutableListOf<String>()
     var user: DtUser = DtUser()
     override fun setBinding(inflater: LayoutInflater): ActUpdateUserBinding =
         ActUpdateUserBinding.inflate(inflater)
@@ -34,6 +34,27 @@ class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
         setupViews()
         setupData()
         setupListener()
+        setSwipe()
+    }
+
+    private fun setSwipe() {
+        layout = binding?.updateUserContent!!
+        layout.setOnTouchListener(object : OnSwipeTouchListener(this) {
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                roles.clear()
+                genders.clear()
+                setupData()
+                Toast.makeText(this@UpdateUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                    .show()
+            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                val intent: Intent = Intent(this@UpdateUserActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+        })
     }
 
     private fun setupViews() {

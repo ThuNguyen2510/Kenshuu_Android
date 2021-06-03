@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.RelativeLayout
+import android.widget.Toast
 import com.example.kenshuu.databinding.ActViewUserBinding
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.ui.base.BaseActivity
+import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.main.MainActivity
 import com.example.kenshuu.ui.user.delete.DeleteUserActivity
 import com.example.kenshuu.ui.user.update.UpdateUserActivity
@@ -22,6 +25,25 @@ class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
         setupViews()
         setupData()
         setupListener()
+        setSwipe()
+    }
+
+    private fun setSwipe() {
+        layout = binding?.viewUserContent!!
+        layout.setOnTouchListener(object : OnSwipeTouchListener(this) {
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                setupData()
+                Toast.makeText(this@ViewUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                    .show()
+            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                val intent: Intent = Intent(this@ViewUserActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+        })
     }
 
     private fun setupViews() {

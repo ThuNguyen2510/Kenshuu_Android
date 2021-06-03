@@ -4,9 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.RelativeLayout
+import android.widget.Toast
 import com.example.kenshuu.databinding.ActDeleteUserBinding
 import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.ui.base.BaseActivity
+import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.main.MainActivity
 import com.example.kenshuu.ui.success.SuccessActivity
 import com.example.kenshuu.utils.PrefsManager
@@ -25,6 +28,25 @@ class DeleteUserActivity : BaseActivity<ActDeleteUserBinding>() {
         setupViews()
         setupData()
         setupListener()
+        setSwipe()
+    }
+
+    private fun setSwipe() {
+        layout = binding?.deleteUserContent!!
+        layout.setOnTouchListener(object : OnSwipeTouchListener(this) {
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                setupData()
+                Toast.makeText(this@DeleteUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                    .show()
+            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                val intent: Intent = Intent(this@DeleteUserActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+        })
     }
 
     private fun setupListener() {
