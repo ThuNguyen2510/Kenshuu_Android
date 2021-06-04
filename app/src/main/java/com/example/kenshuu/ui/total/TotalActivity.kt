@@ -18,8 +18,6 @@ import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.login.LoginViewModel
 import com.example.kenshuu.ui.main.MainActivity
 import com.example.kenshuu.utils.PrefsManager
-import com.r0adkll.slidr.Slidr
-import com.r0adkll.slidr.model.SlidrInterface
 import kotlinx.android.synthetic.main.act_total.*
 import org.koin.android.ext.android.inject
 import java.util.ArrayList

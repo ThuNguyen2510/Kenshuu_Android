@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createUserContent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/createUserContent">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/toolbar"
@@ -35,11 +35,13 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:textColor="@color/red"
                 android:id="@+id/edtUserId"
                 android:layout_width="172dp"
-                android:maxLength="8"
                 android:layout_height="wrap_content"
+                android:maxLength="8"
+                android:nextFocusForward="@+id/edtPassword"
+                android:singleLine="true"
+                android:textColor="@color/red"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -58,6 +60,8 @@
                 android:inputType="textPassword"
                 android:lines="1"
                 android:maxLength="8"
+                android:nextFocusForward="@+id/edtFamilyName"
+                android:singleLine="true"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -74,6 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLength="10"
+                android:nextFocusForward="@+id/edtFirstName"
+                android:singleLine="true"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -90,6 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLength="10"
+                android:nextFocusForward="@+id/edtAge"
+                android:singleLine="true"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -107,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:inputType="number"
+                android:singleLine="true"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -156,28 +165,32 @@
             <CheckBox
                 android:id="@+id/cbAdmin"
                 android:layout_width="174dp"
+                android:layout_height="match_parent"
                 android:checked="false"
-                android:layout_height="match_parent" />
+                android:singleLine="true" />
         </TableRow>
 
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp">
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp">
 
             <Button
                 android:id="@+id/btnReturn"
-                android:layout_marginStart="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:nextFocusForward="@+id/btnCreate"
+                android:singleLine="true"
                 android:text="戻る" />
+
             <Button
                 android:id="@+id/btnCreate"
-                android:layout_marginStart="150dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
                 android:text="登録" />
 
         </RelativeLayout>

@@ -48,6 +48,7 @@ class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
                 Toast.makeText(this@UpdateUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
                     .show()
             }
+
             override fun onSwipeRight() {
                 super.onSwipeRight()
                 val intent: Intent = Intent(this@UpdateUserActivity, MainActivity::class.java)
@@ -188,6 +189,46 @@ class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
                         }
                     }
                 })
+            }
+        }
+        binding?.run {
+            edtUserId.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//ユーザIDをフォーカスアウトする
+                    if (edtUserId?.text.toString().length == 0) {
+                        edtUserId.setError("ユーザIDが未入力です。");
+                    }
+                }
+            }
+            edtPassword.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//パスワードをフォーカスアウトする
+                    if (edtPassword?.text.toString().length == 0) {
+                        edtPassword.setError("パスワードが未入力です。")
+                    }
+                }
+            }
+            edtFamilyName.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//姓をフォーカスアウトする
+                    if (edtFamilyName?.text.toString().length == 0) {
+                        edtFamilyName.setError("姓が未入力です。");
+                    }
+                }
+            }
+            edtFirstName.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//名をフォーカスアウトする
+                    if (edtFirstName?.text.toString().length == 0) {
+                        edtFirstName.setError("名が未入力です。")
+                    }
+                }
+            }
+            spnGender.setOnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    hideKeyboard()
+                }
+            }
+            spnAuthorityName.setOnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    hideKeyboard()
+                }
             }
         }
     }

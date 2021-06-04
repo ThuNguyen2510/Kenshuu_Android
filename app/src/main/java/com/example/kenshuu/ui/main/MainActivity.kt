@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -18,6 +19,7 @@ import com.example.kenshuu.ui.base.BaseActivity
 import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.user.read.ViewUserActivity
 import com.example.kenshuu.utils.PrefsManager
+import kotlinx.android.synthetic.main.act_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.frag_slider.*
 import kotlinx.android.synthetic.main.user_record.*
@@ -117,6 +119,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             val intent: Intent = Intent(this, ViewUserActivity::class.java)
             intent.putExtra("myBundle", b)//ユーザを保持して転送する
             startActivity(intent)//ユーザの詳細画面に遷移する
+        }
+        binding?.run {
+            edtFamilyName?.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    btnSearch.performClick()//完成ボタンのようにする
+                    hideKeyboard()//キーボードが非表示
+                    edtFamilyName.clearFocus()
+                    true
+                } else {
+                    false
+                }
+            }
+            edtFirstName?.setOnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    btnSearch.performClick()//完成ボタンのようにする
+                    hideKeyboard()//キーボードが非表示
+                    edtFirstName.clearFocus()
+                    true
+                } else {
+                    false
+                }
+            }
         }
     }
 

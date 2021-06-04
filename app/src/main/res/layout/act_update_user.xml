@@ -39,8 +39,10 @@
                 android:id="@+id/edtUserId"
                 android:layout_width="172dp"
                 android:maxLength="8"
+                android:singleLine="true"
                 android:layout_height="wrap_content"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:nextFocusForward="@+id/edtPassword"/>
         </TableRow>
 
         <TableRow>
@@ -56,9 +58,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:lines="1"
+                android:singleLine="true"
                 android:maxLength="8"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:nextFocusForward="@+id/edtFamilyName"/>
         </TableRow>
 
         <TableRow>
@@ -74,7 +77,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLength="10"
-                android:textSize="20dp" />
+                android:singleLine="true"
+                android:textSize="20dp"
+                android:nextFocusForward="@+id/edtFirstName"/>
         </TableRow>
 
         <TableRow>
@@ -90,7 +95,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLength="10"
-                android:textSize="20dp" />
+                android:singleLine="true"
+                android:textSize="20dp"
+                android:nextFocusForward="@+id/edtAge"
+                />
         </TableRow>
 
 
@@ -106,6 +114,7 @@
                 android:id="@+id/edtAge"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:singleLine="true"
                 android:inputType="number"
                 android:textSize="20dp" />
         </TableRow>

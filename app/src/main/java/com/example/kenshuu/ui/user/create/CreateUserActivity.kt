@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.kenshuu.databinding.ActCreateUserBinding
@@ -18,6 +19,7 @@ import com.example.kenshuu.ui.main.MainActivity
 import com.example.kenshuu.ui.success.SuccessActivity
 import com.example.kenshuu.utils.PrefsManager
 import kotlinx.android.synthetic.main.act_create_user.*
+import kotlinx.android.synthetic.main.act_login.*
 import org.koin.android.ext.android.bind
 import org.koin.android.ext.android.inject
 
@@ -180,24 +182,46 @@ class CreateUserActivity : BaseActivity<ActCreateUserBinding>() {
             }
         }
 
-    }
-
-  /*  fun getAuthorityId(authorityName: String): Int {
-        var id: Int = 0
-        for (key in hashMapRole.keys) {
-            if (hashMapRole[key].equals(authorityName))
-                id = key
+        binding?.run {
+            edtUserId.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//ユーザIDをフォーカスアウトする
+                    if (edtUserId?.text.toString().length == 0) {
+                        edtUserId.setError("ユーザIDが未入力です。");
+                    }
+                }
+            }
+            edtPassword.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//パスワードをフォーカスアウトする
+                    if (edtPassword?.text.toString().length == 0) {
+                        edtPassword.setError("パスワードが未入力です。")
+                    }
+                }
+            }
+            edtFamilyName.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//姓をフォーカスアウトする
+                    if (edtFamilyName?.text.toString().length == 0) {
+                        edtFamilyName.setError("姓が未入力です。");
+                    }
+                }
+            }
+            edtFirstName.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//名をフォーカスアウトする
+                    if (edtFirstName?.text.toString().length == 0) {
+                        edtFirstName.setError("名が未入力です。")
+                    }
+                }
+            }
+            spnGender.setOnFocusChangeListener { v, hasFocus ->
+                if(hasFocus){
+                    hideKeyboard()
+                }
+            }
+            spnAuthorityName.setOnFocusChangeListener { v, hasFocus ->
+                if(hasFocus){
+                    hideKeyboard()
+                }
+            }
         }
-        return id
     }
-
-    fun getGenderId(gender: String): Int {
-        var id: Int = 0
-        for (key in hashMapGender.keys) {
-            if (hashMapGender[key].equals(gender))
-                id = key
-        }
-        return id
-    }*/
 
 }

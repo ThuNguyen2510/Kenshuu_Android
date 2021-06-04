@@ -1,27 +1,21 @@
 package com.example.kenshuu.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.RelativeLayout
-import android.widget.Toast
-import androidx.lifecycle.Observer
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import com.example.kenshuu.databinding.ActLoginBinding
-import com.example.kenshuu.model.DtUser
 import com.example.kenshuu.model.User
 import com.example.kenshuu.ui.base.BaseActivity
 import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.main.MainActivity
-import com.example.kenshuu.ui.main.MainViewModel
 import com.example.kenshuu.utils.PrefsManager
-import com.google.android.material.snackbar.Snackbar
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.act_create_user.*
 import kotlinx.android.synthetic.main.act_login.*
 import org.koin.android.ext.android.inject
-import org.koin.ext.quoted
 
 class LoginActivity : BaseActivity<ActLoginBinding>() {
 
@@ -36,7 +30,7 @@ class LoginActivity : BaseActivity<ActLoginBinding>() {
         setSwipe()
     }
 
-    private fun setSwipe() {
+    private fun setSwipe() {//スワイプを実装
         layout = binding?.loginContent!!
         layout.setOnTouchListener(object : OnSwipeTouchListener(this) {
             override fun onSwipeDown() {
@@ -88,7 +82,10 @@ class LoginActivity : BaseActivity<ActLoginBinding>() {
                 viewModel.login(
                     binding?.edituserId?.text.toString(),
                     binding?.editpassword?.text.toString()
+
                 )
+                binding?.edituserId?.clearFocus()
+                binding?.editpassword?.clearFocus()
                 showProgress()
             }
 
@@ -113,5 +110,33 @@ class LoginActivity : BaseActivity<ActLoginBinding>() {
             }
 
         })
+
+        binding?.editpassword?.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                btnLogin.performClick()//完成ボタンのようにする
+                hideKeyboard()//キーボードが非表示
+                true
+            } else {
+                false
+            }
+        }
+        binding?.run {
+            edituserId.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//ユーザIDをフォーカスアウトする
+                    if (edituserId?.text.toString().length == 0) {
+                        edituserId.setError("ユーザIDが未入力です。");
+                    }
+                }
+            }
+            editpassword.setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {//パスワードをフォーカスアウトする
+                    if (editpassword?.text.toString().length == 0) {
+                        editpassword.setError("パスワードが未入力です。")
+                    }
+                }
+            }
+        }
     }
+
+
 }

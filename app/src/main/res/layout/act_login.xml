@@ -66,6 +66,8 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="100dp"
                 android:lines="1"
+                android:singleLine="true"
+                android:nextFocusForward="@+id/editpassword"
                 android:maxLength="8" />
         </RelativeLayout>
 
@@ -87,7 +89,8 @@
                 android:layout_marginLeft="100dp"
                 android:inputType="textPassword"
                 android:lines="1"
-                android:maxLength="8" />
+                android:maxLength="8"
+                android:imeOptions="actionDone"/>
         </RelativeLayout>
 
 
