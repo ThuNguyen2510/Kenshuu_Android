@@ -43,7 +43,7 @@ class TotalActivity : BaseActivity<ActTotalBinding>() {
                 super.onSwipeDown()
                 counts.clear()
                 viewModel.getTotal(pref.getToken().toString())//全てのデータを取る
-                Toast.makeText(this@TotalActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                Toast.makeText(this@TotalActivity, "最新のデータが更新されています。", Toast.LENGTH_LONG)
                     .show()
             }
             override fun onSwipeRight() {

@@ -54,7 +54,7 @@ class CreateUserActivity : BaseActivity<ActCreateUserBinding>() {
                     cbAdmin.isChecked=false
                 }
                 setupData()
-                Toast.makeText(this@CreateUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                Toast.makeText(this@CreateUserActivity, "最新のデータが更新されています。", Toast.LENGTH_LONG)
                     .show()
             }
             override fun onSwipeRight() {

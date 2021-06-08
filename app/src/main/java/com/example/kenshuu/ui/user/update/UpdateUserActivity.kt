@@ -14,7 +14,9 @@ import com.example.kenshuu.model.Gender
 import com.example.kenshuu.model.Role
 import com.example.kenshuu.ui.base.BaseActivity
 import com.example.kenshuu.ui.base.OnSwipeTouchListener
+import com.example.kenshuu.ui.login.LoginActivity
 import com.example.kenshuu.ui.main.MainActivity
+import com.example.kenshuu.ui.slider.SliderViewModel
 import com.example.kenshuu.ui.success.SuccessActivity
 import com.example.kenshuu.utils.PrefsManager
 import kotlinx.android.synthetic.main.act_create_user.*
@@ -25,6 +27,7 @@ import org.koin.android.ext.android.inject
 
 class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
     private val viewModel: UpdateUserViewModel by inject()
+    private val viewModel2: SliderViewModel by inject()
     private val pref: PrefsManager by inject()
     var user: DtUser = DtUser()
     override fun setBinding(inflater: LayoutInflater): ActUpdateUserBinding =
@@ -45,7 +48,7 @@ class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
                 roles.clear()
                 genders.clear()
                 setupData()
-                Toast.makeText(this@UpdateUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                Toast.makeText(this@UpdateUserActivity, "最新のデータが更新されています。", Toast.LENGTH_LONG)
                     .show()
             }
 
@@ -173,7 +176,7 @@ class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
                     binding?.edtFirstName?.requestFocus()
                 }
             } else {
-                viewModel.updateUser(pref.getToken().toString(), user)//登録する
+                viewModel.updateUser(pref.getToken().toString(), user)//更新する
                 viewModel.flag.observe(this, {
                     if (it.data?.message.toString() != "") {//入力チェックしてから、エラーが発生する
                         binding?.tvError?.text = it.data?.message

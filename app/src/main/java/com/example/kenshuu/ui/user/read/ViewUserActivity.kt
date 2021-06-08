@@ -34,7 +34,7 @@ class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
             override fun onSwipeDown() {
                 super.onSwipeDown()
                 setupData()
-                Toast.makeText(this@ViewUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                Toast.makeText(this@ViewUserActivity, "最新のデータが更新されています。", Toast.LENGTH_LONG)
                     .show()
             }
             override fun onSwipeRight() {

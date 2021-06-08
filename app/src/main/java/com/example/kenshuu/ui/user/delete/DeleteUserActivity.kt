@@ -37,9 +37,10 @@ class DeleteUserActivity : BaseActivity<ActDeleteUserBinding>() {
             override fun onSwipeDown() {
                 super.onSwipeDown()
                 setupData()
-                Toast.makeText(this@DeleteUserActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                Toast.makeText(this@DeleteUserActivity, "最新のデータが更新されています。", Toast.LENGTH_LONG)
                     .show()
             }
+
             override fun onSwipeRight() {
                 super.onSwipeRight()
                 val intent: Intent = Intent(this@DeleteUserActivity, MainActivity::class.java)
@@ -55,18 +56,26 @@ class DeleteUserActivity : BaseActivity<ActDeleteUserBinding>() {
             startActivity(intent)//一覧画面に遷移する
         }
         binding?.btnDelete?.setOnClickListener {
-            viewModel.deleteUser(pref.getToken().toString(), user)
-            viewModel.flag.observe(this, {
-                if (it.data?.message.equals("not_found")) {
-                    tvmessage.text = "ユーザが見つかりません。"//ユーザが存在していない
-                } else if(it.data?.status.equals("fail")){
-                    tvmessage.text = "削除が失敗しました。"//失敗
-                }else{//成功
-                    val intent: Intent=Intent(this, SuccessActivity::class.java)
-                    intent.putExtra("message","削除完了")
-                    startActivity(intent)//完了画面に遷移する
-                }
-            })
+            if (user.userId != pref.getUserId()) {
+                viewModel.deleteUser(pref.getToken().toString(), user)
+                viewModel.flag.observe(this, {
+                    if (it.data?.message.equals("not_found")) {
+                        tvmessage.text = "ユーザが見つかりません。"//ユーザが存在していない
+                    } else if (it.data?.status.equals("fail")) {
+                        tvmessage.text = "削除が失敗しました。"//失敗
+                    } else {//成功
+                        val intent: Intent = Intent(this, SuccessActivity::class.java)
+                        intent.putExtra("message", "削除完了")
+                        startActivity(intent)//完了画面に遷移する
+                    }
+                })
+            } else {
+                Toast.makeText(
+                    this@DeleteUserActivity,
+                    "ユーザがログインしてますので、削除できません。",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 

@@ -41,14 +41,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         setupListener()
         setSwipe()
     }
-    fun setSwipe(){
-        layout= binding?.contentRelative!!
+
+    fun setSwipe() {
+        layout = binding?.contentRelative!!
         layout.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity) {
             override fun onSwipeDown() {
                 super.onSwipeDown()
                 users.clear()
+                binding?.edtFamilyName?.text?.clear()
+                binding?.edtFirstName?.text?.clear()
+                binding?.spnAuthority?.setSelection(0)
                 viewModel.queryAllUser(pref.getToken().toString())//全てのデータを取る
-                Toast.makeText(this@MainActivity, "データが最新しています。", Toast.LENGTH_LONG)
+                Toast.makeText(this@MainActivity, "最新のデータが更新されています。", Toast.LENGTH_LONG)
                     .show()
             }
 

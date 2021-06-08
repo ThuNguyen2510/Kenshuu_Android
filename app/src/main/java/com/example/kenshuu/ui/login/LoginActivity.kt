@@ -40,13 +40,6 @@ class LoginActivity : BaseActivity<ActLoginBinding>() {
                     editpassword.text.clear()
                 }
             }
-
-            override fun onSwipeRight() {
-                super.onSwipeRight()
-                val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
-            }
-
         })
     }
 
