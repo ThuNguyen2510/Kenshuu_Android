@@ -38,6 +38,7 @@ class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
         setupData()
         setupListener()
         setSwipe()
+        countDownTimer.start()
     }
 
     private fun setSwipe() {
@@ -45,6 +46,7 @@ class UpdateUserActivity : BaseActivity<ActUpdateUserBinding>() {
         layout.setOnTouchListener(object : OnSwipeTouchListener(this) {
             override fun onSwipeDown() {
                 super.onSwipeDown()
+                binding?.tvError?.text=""
                 roles.clear()
                 genders.clear()
                 setupData()

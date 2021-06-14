@@ -16,18 +16,20 @@ import org.w3c.dom.Text
 
 class UserAdapter(var context: Context, var listUser: List<DtUser>) : BaseAdapter() {
 
-    class ViewHolder(row : View){
+    class ViewHolder(row: View) {
         var tvStt: TextView
         var tvUserId: TextView
         var tvFullName: TextView
         var tvAuthorityName: TextView
-        init{
+
+        init {
             tvStt = row.findViewById(R.id.tvStt) as TextView
             tvUserId = row.findViewById(R.id.tvUserId) as TextView
             tvFullName = row.findViewById(R.id.tvFullName) as TextView
             tvAuthorityName = row.findViewById(R.id.tvAuthorityName) as TextView
         }
     }
+
     override fun getCount(): Int {
         return listUser.size
     }
@@ -37,27 +39,30 @@ class UserAdapter(var context: Context, var listUser: List<DtUser>) : BaseAdapte
     }
 
     override fun getItemId(position: Int): Long {
-        return  position.toLong()
+        return position.toLong()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var view : View?
-        var viewholder : ViewHolder
-        if(convertView==null){
-            var layoutinflater : LayoutInflater = LayoutInflater.from(context)
-            view =  layoutinflater.inflate(R.layout.user_record,null)
+        var view: View?
+        var viewholder: ViewHolder
+        if (convertView == null) {
+            var layoutinflater: LayoutInflater = LayoutInflater.from(context)
+            view = layoutinflater.inflate(R.layout.user_record, null)
             viewholder = ViewHolder(view)
             view.tag = viewholder
-        }else{
+        } else {
             view = convertView
-            viewholder= convertView.tag as ViewHolder
+            viewholder = convertView.tag as ViewHolder
         }
-        var user : DtUser = getItem(position) as DtUser
-        viewholder.tvStt.text=(position +1).toString()
-        viewholder.tvUserId.text= user.userId
-        viewholder.tvFullName.text= user.familyName +" "+user.firstName
-        viewholder.tvAuthorityName.text= user.role?.authorityName
-        if(user.admin==1) viewholder.tvAuthorityName.text= "★"+user.role?.authorityName
+        var user: DtUser = getItem(position) as DtUser
+        try {
+            viewholder.tvStt.text = (position + 1).toString()
+        } catch (e: Exception) {
+        }
+        viewholder.tvUserId.text = user.userId
+        viewholder.tvFullName.text = user.familyName + " " + user.firstName
+        viewholder.tvAuthorityName.text = user.role?.authorityName
+        if (user.admin == 1) viewholder.tvAuthorityName.text = "★" + user.role?.authorityName
         return view as View
     }
 }

@@ -16,6 +16,7 @@ class SuccessActivity : BaseActivity<ActSuccessBinding>() {
     override fun onViewReady(savedInstanceState: Bundle?) {
         setupViews()
         setupListener()
+        countDownTimer.start()
     }
 
     private fun setupViews() {

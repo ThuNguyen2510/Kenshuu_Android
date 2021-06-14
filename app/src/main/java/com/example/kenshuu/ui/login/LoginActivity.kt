@@ -36,6 +36,7 @@ class LoginActivity : BaseActivity<ActLoginBinding>() {
             override fun onSwipeDown() {
                 super.onSwipeDown()
                 binding?.run {
+                    message.text=""
                     edituserId.text.clear()
                     editpassword.text.clear()
                 }

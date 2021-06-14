@@ -40,6 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         setupData()
         setupListener()
         setSwipe()
+        countDownTimer.start()
     }
 
     fun setSwipe() {

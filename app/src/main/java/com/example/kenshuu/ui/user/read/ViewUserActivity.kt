@@ -26,6 +26,7 @@ class ViewUserActivity : BaseActivity<ActViewUserBinding>() {
         setupData()
         setupListener()
         setSwipe()
+        countDownTimer.start()
     }
 
     private fun setSwipe() {

@@ -29,6 +29,7 @@ class DeleteUserActivity : BaseActivity<ActDeleteUserBinding>() {
         setupData()
         setupListener()
         setSwipe()
+        countDownTimer.start()
     }
 
     private fun setSwipe() {

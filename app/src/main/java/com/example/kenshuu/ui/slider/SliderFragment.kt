@@ -28,6 +28,7 @@ class SliderFragment : BaseFragment<FragSliderBinding, MainActivity>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+        countDownTimer.start()
     }
     private val pref : PrefsManager by inject()
     private val viewModel : SliderViewModel by inject()

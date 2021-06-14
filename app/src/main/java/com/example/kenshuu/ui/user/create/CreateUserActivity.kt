@@ -34,6 +34,7 @@ class CreateUserActivity : BaseActivity<ActCreateUserBinding>() {
         setupData()
         setupListener()
         setSwipe()
+        countDownTimer.start()
     }
 
     private fun setSwipe() {
@@ -44,6 +45,7 @@ class CreateUserActivity : BaseActivity<ActCreateUserBinding>() {
                 roles.clear()
                 genders.clear()
                 binding?.run {
+                    tvError.text=""
                     edtUserId.text.clear()
                     edtPassword.text.clear()
                     edtFamilyName.text.clear()

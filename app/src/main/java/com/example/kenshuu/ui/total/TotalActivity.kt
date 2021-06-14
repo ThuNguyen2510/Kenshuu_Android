@@ -2,6 +2,7 @@ package com.example.kenshuu.ui.total
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.kenshuu.databinding.ActLoginBinding
 import com.example.kenshuu.databinding.ActTotalBinding
 import com.example.kenshuu.model.Count
 import com.example.kenshuu.model.DtUser
+import com.example.kenshuu.model.User
 import com.example.kenshuu.ui.base.BaseActivity
 import com.example.kenshuu.ui.base.OnSwipeTouchListener
 import com.example.kenshuu.ui.login.LoginViewModel
@@ -29,11 +31,13 @@ class TotalActivity : BaseActivity<ActTotalBinding>() {
         ActTotalBinding.inflate(inflater)
 
     var counts: ArrayList<Count> = ArrayList()
+
     override fun onViewReady(savedInstanceState: Bundle?) {
         setViews()
         setUpdata()
         setupListener()
         setSwipe()
+        countDownTimer.start()
     }
 
     private fun setSwipe() {
@@ -41,6 +45,7 @@ class TotalActivity : BaseActivity<ActTotalBinding>() {
         layout.setOnTouchListener(object : OnSwipeTouchListener(this) {
             override fun onSwipeDown() {
                 super.onSwipeDown()
+                tvmessage.text = "最新のデータが集計されています。"
                 counts.clear()
                 viewModel.getTotal(pref.getToken().toString())//全てのデータを取る
                 Toast.makeText(this@TotalActivity, "最新のデータが更新されています。", Toast.LENGTH_LONG)
